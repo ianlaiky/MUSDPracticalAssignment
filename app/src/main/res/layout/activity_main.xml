@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="10"
+    android:weightSum="100"
+    android:layout_margin="10dp"
+
     tools:context="com.example.ian.practicalassignment.MainActivity">
 
     <LinearLayout
@@ -14,48 +16,76 @@
         android:layout_height="0dp"
         android:layout_weight="40"
         android:orientation="vertical"
-        android:weightSum="10">
+        android:weightSum="100">
 
         <LinearLayout
             android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-            android:layout_weight="5">
-
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:orientation="horizontal"
+            android:weightSum="100">
 
             <TextView
-                android:id="@+id/convertView"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="8"
+                android:layout_weight="80"
                 android:gravity="right"
                 android:text="0.00"
-                android:textSize="50sp" />
+                android:textSize="60sp" />
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="20"
                 android:gravity="center"
                 android:text="SGD"
-                android:textSize="25sp" />
+                android:textSize="35sp" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:orientation="horizontal"
+            android:weightSum="100">
 
-            android:layout_height="wrap_content"
-            android:layout_weight="5">
-
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="80"
+                android:gravity="right"
+                android:hint="0"
+                android:textSize="35sp" />
 
             <TextView
-
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="wrwer" />
-
+                android:layout_weight="20"
+                android:gravity="center"
+                android:text="AUD"
+                android:textSize="35sp" />
 
         </LinearLayout>
+
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="60">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="From"
+            android:textSize="30sp"
+            />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ListView>
 
     </LinearLayout>
 </LinearLayout>
