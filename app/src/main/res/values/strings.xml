@@ -1,3 +1,40 @@
 <resources>
     <string name="app_name">PracticalAssignment</string>
+    <string-array name="listCurr">
+        <item>Australian Dollar</item>
+        <item>Bulgarian lev</item>
+        <item>Brazilian real</item>
+        <item>Canadian Dollar</item>
+        <item>Swiss franc</item>
+        <item>Chinese Yuan</item>
+        <item>Czech Republic Koruna</item>
+        <item>Danish Krone</item>
+        <item>British Pound</item>
+        <item>Hong Kong Dollar</item>
+        <item>Croatian Kuna</item>
+        <item>Hungarian Forint</item>
+        <item>Indonesian Rupiah</item>
+        <item>Israeli New Sheqel</item>
+        <item>Indian Rupee</item>
+        <item>Japanese Yen</item>
+        <item>South Korean Won</item>
+        <item>Mexican Peso</item>
+        <item>Malaysian Ringgit</item>
+        <item>Norwegian Krone</item>
+        <item>New Zealand Dollar</item>
+        <item>Philippine Peso</item>
+        <item>Polish Zloty</item>
+        <item>Romanian Leu</item>
+        <item>Russian Ruble</item>
+        <item>Swedish Krona</item>
+        <item>Thai Baht</item>
+        <item>Turkish Lira</item>
+        <item>US Dollar</item>
+        <item>South African Rand</item>
+        <item>Euro</item>
+
+
+
+
+    </string-array>
 </resources>

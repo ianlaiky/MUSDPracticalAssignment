@@ -4,9 +4,9 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     android:orientation="vertical"
     android:weightSum="100"
-    android:layout_margin="10dp"
 
     tools:context="com.example.ian.practicalassignment.MainActivity">
 
@@ -26,6 +26,7 @@
             android:weightSum="100">
 
             <TextView
+                android:id="@+id/curr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="80"
@@ -51,6 +52,7 @@
             android:weightSum="100">
 
             <EditText
+                android:id="@+id/imputte"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="80"
@@ -59,6 +61,7 @@
                 android:textSize="35sp" />
 
             <TextView
+                android:id="@+id/currText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="20"
@@ -70,24 +73,23 @@
 
 
     </LinearLayout>
-    
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="60">
+        android:layout_weight="60"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="From"
-            android:textSize="30sp"
-            />
+            android:textSize="30sp" />
 
         <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 </LinearLayout>
