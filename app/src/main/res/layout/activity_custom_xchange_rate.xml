@@ -19,8 +19,21 @@
 
 
         />
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Rates"
+    />
+<EditText
+    android:id="@+id/name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
 
-
+    />
+    <EditText
+        android:id="@+id/rateno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
 
