@@ -8,6 +8,21 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.ian.practicalassignment.CustomXchangeRate">
+    tools:context="com.example.ian.practicalassignment.CustomXchangeRate"
+    android:orientation="vertical">
+
+    <Spinner
+        android:id="@+id/spin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+
+        />
+
+
+
+
+
 
 </LinearLayout>
