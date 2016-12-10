@@ -17,7 +17,7 @@ public class MyDbAdapter {
     private final Context context;
 
     private static final String TEXT_TYPE = " TEXT";
-    private static final String COMMA_SEP = ",";
+    private static final String COMMA_SEP = ", ";
     public static final String KEY_ID = "_id";
     public static final int COLUMN_KEY_ID = 0;
     public static final String CODES = "codes";
@@ -28,7 +28,7 @@ public class MyDbAdapter {
     public static final int COLUMN_RATES = 3;
 
     protected static final String DATABASE_CREATE = "create table " + DATABASE_TABLE + " " + "(" + KEY_ID + " integer primary key autoincrement, " + CODES +TEXT_TYPE+COMMA_SEP+
-            COUNTRY_CODES+TEXT_TYPE+COMMA_SEP+RATES+TEXT_TYPE+COMMA_SEP+" )";
+            COUNTRY_CODES+TEXT_TYPE+COMMA_SEP+RATES+TEXT_TYPE+" )";
 
     private String MYDBADAPTER_LOG_CAT = "MY_LOG";
 

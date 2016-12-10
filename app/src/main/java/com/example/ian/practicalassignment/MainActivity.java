@@ -2,7 +2,6 @@ package com.example.ian.practicalassignment;
 
 import android.content.Intent;
 import android.icu.text.DecimalFormat;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,14 +12,11 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
@@ -41,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     String itemselected = "";
     double currentcySelected;
     double newCurr;
+
+    Currency myCurrency;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -275,7 +273,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        System.out.println("TTTTTTT");
+myCurrency = Currency.getInstance();
 
+        myCurrency.addToDatabase("ass","asdf","124",getApplicationContext());
+
+ArrayList<String> temp = (ArrayList<String>) myCurrency.retrieveAll(getApplicationContext());
+        System.out.println(temp.get(0));
+        System.out.println("CHECKING DB"+temp.size());
+        System.out.println("CCCCCC");
 
     }
 

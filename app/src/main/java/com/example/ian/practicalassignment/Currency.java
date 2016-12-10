@@ -54,7 +54,9 @@ public Currency(){
 
         return updateStatus;
     }
-    public List<String> retriveAll(Context c) {
+    public List<String> retrieveAll(Context c) {
+        System.out.println("TEST!");
+
         Cursor myCursor;
         String myString;
         MyDbAdapter db = new MyDbAdapter(c);
@@ -62,16 +64,26 @@ public Currency(){
         currIdList.clear();
         currList.clear();
         myCursor = db.retrieveAllEntriesCursor();
+
+        System.out.println(myCursor.getCount());
+
+
         if (myCursor != null && myCursor.getCount() > 0) {
             myCursor.moveToFirst();
             do {
                 currIdList.add(myCursor.getInt(db.COLUMN_KEY_ID));
-                myString = myCursor.getString(db.COLUMN_CODES) + "-" + myCursor.getString(db.COLUMN_COUNTRY_CODES) + "-" + myCursor.getString(db.COLUMN_RATES) + "\n";
-                currList.add(myString);
+            //    myString = myCursor.getString(db.COLUMN_CODES) + "-" + myCursor.getString(db.COLUMN_COUNTRY_CODES) + "-" + myCursor.getString(db.COLUMN_RATES) + "\n";
+                System.out.println("DB CHECK");
+                System.out.println(myCursor.getString(db.COLUMN_COUNTRY_CODES));
+                currList.add(myCursor.getString(db.COLUMN_CODES));
+                currList.add( myCursor.getString(db.COLUMN_COUNTRY_CODES));
+                currList.add(myCursor.getString(db.COLUMN_RATES));
+
             } while (myCursor.moveToNext());
         }
         db.close();
         return currList;
     }
+
 
 }
