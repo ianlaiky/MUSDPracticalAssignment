@@ -1,5 +1,7 @@
 package com.example.ian.practicalassignment;
 
+import android.content.Intent;
+import android.icu.text.DecimalFormat;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -85,14 +87,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==R.id.convert){
-           newCurr = parseDouble(edit.getText().toString())*currentcySelected;
+            DecimalFormat forma = new DecimalFormat("#0.00");
+
+
+           newCurr = parseDouble(edit.getText().toString())/(currentcySelected);
+            String temp = forma.format(newCurr)+"";
+            te.setText(temp);
+        }else if(item.getItemId()==R.id.addCustom){
+            Intent tn = new Intent(this,CustomXchangeRate.class);
+            startActivity(tn);
+
+
         }
+        return true;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        currentcySelected=aud;
 
         aud = 0.944;
         bgn = 1.2824;
