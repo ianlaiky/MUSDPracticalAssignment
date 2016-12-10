@@ -20,6 +20,8 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.ArrayList;
+
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 
@@ -31,39 +33,9 @@ public class MainActivity extends AppCompatActivity {
     TextView currText;
 
     ArrayAdapter<CharSequence> arr;
+    ArrayList<String> allCurr = new ArrayList<String>();
 
-    double aud;
-    double bgn;
-    double brl;
-    double cad;
-    double chf;
-    double cny;
-    double czk;
-    double dkk;
-    double gbp;
-    double hkd;
-    double hrk;
-    double huf;
-    double idr;
-    double ils;
-    double inr;
-    double jpy;
-    double krw;
-    double mxn;
-    double myr;
-    double nok;
-    double nzd;
-    double php;
-    double pln;
-    double ron;
-    double rub;
-    double sek;
-    double thb;
-    double turk;
-    double usd;
-    double zar;
-    double eur;
-
+    final int RESULT_CODE = 1;
 
     Menu myMenu;
     String itemselected = "";
@@ -80,22 +52,23 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         this.myMenu = menu;
-        getMenuInflater().inflate(R.menu.main,menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==R.id.convert){
+        if (item.getItemId() == R.id.convert) {
             DecimalFormat forma = new DecimalFormat("#0.00");
 
 
-           newCurr = parseDouble(edit.getText().toString())/(currentcySelected);
-            String temp = forma.format(newCurr)+"";
+            newCurr = parseDouble(edit.getText().toString()) / (currentcySelected);
+            String temp = forma.format(newCurr) + "";
             te.setText(temp);
-        }else if(item.getItemId()==R.id.addCustom){
-            Intent tn = new Intent(this,CustomXchangeRate.class);
-            startActivity(tn);
+        } else if (item.getItemId() == R.id.addCustom) {
+            Intent tn = new Intent(this, CustomXchangeRate.class);
+            tn.putExtra("arr",allCurr);
+            startActivityForResult(tn,RESULT_CODE);
 
 
         }
@@ -106,43 +79,73 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        currentcySelected=aud;
-
-        aud = 0.944;
-        bgn = 1.2824;
-        brl = 2.2842;
-        cad = 0.96158;
-        chf = 0.70946;
-        cny = 4.8624;
-        czk = 17.719;
-        dkk = 4.8779;
-        gbp = 0.59045;
-        hkd = 5.566;
-        hrk = 4.9238;
-        huf = 202.24;
-        idr = 9359.3;
-        ils = 2.763;
-        inr = 47.927;
-        jpy = 75.385;
-        krw = 822.82;
-        mxn = 13.583;
-        myr = 3.0142;
-        nok = 5.9239;
-        nzd = 1.0041;
-        php = 34.793;
-        pln = 28.377;
-        ron = 2.9546;
-        rub = 45.407;
-        sek = 6.4684;
-        thb = 25.131;
-        turk = 2.2271;
-        usd = 0.71772;
-        zar = 9.7359;
-        eur = 0.65569;
 
 
+        allCurr.add("AUD");
+        allCurr.add("0.944");
+        allCurr.add("BGN");
+        allCurr.add("1.2824");
+        allCurr.add("BRL");
+        allCurr.add("2.2842");
+        allCurr.add("CAD");
+        allCurr.add("0.96158");
+        allCurr.add("CHF");
+        allCurr.add("0.70946");
+        allCurr.add("CNY");
+        allCurr.add("4.8624");
+        allCurr.add("CZK");
+        allCurr.add("17.719");
+        allCurr.add("DKK");
+        allCurr.add("4.8779");
+        allCurr.add("GBP");
+        allCurr.add("0.59045");
+        allCurr.add("HKD");
+        allCurr.add("5.566");
+        allCurr.add("HRK");
+        allCurr.add("4.9238");
+        allCurr.add("HUF");
+        allCurr.add("202.24");
+        allCurr.add("IDR");
+        allCurr.add("9359.3");
+        allCurr.add("ILS");
+        allCurr.add("2.763");
+        allCurr.add("INR");
+        allCurr.add("47.927");
+        allCurr.add("JPY");
+        allCurr.add("75.385");
+        allCurr.add("KRW");
+        allCurr.add("822.82");
+        allCurr.add("MXN");
+        allCurr.add("13.583");
+        allCurr.add("MYR");
+        allCurr.add("3.0142");
+        allCurr.add("NOK");
+        allCurr.add("5.9239");
+        allCurr.add("NZD");
+        allCurr.add("1.0041");
+        allCurr.add("PHP");
+        allCurr.add("34.793");
+        allCurr.add("PLN");
+        allCurr.add("28.377");
+        allCurr.add("RON");
+        allCurr.add("2.9546");
+        allCurr.add("RUB");
+        allCurr.add("45.407");
+        allCurr.add("SEK");
+        allCurr.add("6.4684");
+        allCurr.add("THB");
+        allCurr.add("25.131");
+        allCurr.add("TRY");
+        allCurr.add("2.2271");
+        allCurr.add("USD");
+        allCurr.add("0.71772");
+        allCurr.add("ZAR");
+        allCurr.add("9.7359");
+        allCurr.add("EUR");
+        allCurr.add("0.65569");
 
 
+        currentcySelected = parseDouble(allCurr.get(1));
 
         li = (ListView) findViewById(R.id.list);
         te = (TextView) findViewById(R.id.curr);
@@ -160,108 +163,118 @@ public class MainActivity extends AppCompatActivity {
 //                Toast.makeText(getApplicationContext(), li.getItemAtPosition(i).toString(), Toast.LENGTH_LONG).show();
 
                 if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Australian Dollar")) {
-                    System.out.println("AUSSS");
+                    //  System.out.println("AUSSS");
                     itemselected = "AUD";
-                    currentcySelected=aud;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Bulgarian lev")) {
                     itemselected = "BGN";
-                    currentcySelected=bgn;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Brazilian real")) {
                     itemselected = "BRL";
-                    currentcySelected=brl;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Canadian Dollar")) {
                     itemselected = "CAD";
-                    currentcySelected=cad;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Swiss franc")) {
                     itemselected = "CHF";
-                    currentcySelected=chf;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Chinese Yuan")) {
                     itemselected = "CNY";
-                    currentcySelected=cny;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Czech Republic Koruna")) {
                     itemselected = "CZK";
-                    currentcySelected=czk;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Danish Krone")) {
                     itemselected = "DKK";
-                    currentcySelected=dkk;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("British Pound")) {
                     itemselected = "GBP";
-                    currentcySelected=gbp;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Hong Kong Dollar")) {
                     itemselected = "HKD";
-                    currentcySelected=hkd;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Croatian Kuna")) {
                     itemselected = "HRK";
-                    currentcySelected=hrk;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Hungarian Forint")) {
                     itemselected = "HUF";
-                    currentcySelected=huf;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Indonesian Rupiah")) {
                     itemselected = "IDR";
-                    currentcySelected=idr;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Israeli New Sheqel")) {
                     itemselected = "ILS";
-                    currentcySelected=ils;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Indian Rupee")) {
                     itemselected = "INR";
-                    currentcySelected=inr;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Japanese Yen")) {
                     itemselected = "JPY";
-                    currentcySelected=jpy;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("South Korean Won")) {
                     itemselected = "KRW";
-                    currentcySelected=krw;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Mexican Peso")) {
                     itemselected = "MXN";
-                    currentcySelected=mxn;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Malaysian Ringgit")) {
                     itemselected = "MYR";
-                    currentcySelected=myr;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Norwegian Krone")) {
                     itemselected = "NOK";
-                    currentcySelected=nok;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("New Zealand Dollar")) {
                     itemselected = "NZD";
-                    currentcySelected=nzd;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Philippine Peso")) {
                     itemselected = "PHP";
-                    currentcySelected=php;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Polish Zloty")) {
                     itemselected = "PLN";
-                    currentcySelected=pln;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Romanian Leu")) {
                     itemselected = "RON";
-                    currentcySelected=ron;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Russian Ruble")) {
                     itemselected = "RUB";
-                    currentcySelected=rub;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Swedish Krona")) {
                     itemselected = "SEK";
-                    currentcySelected=sek;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Thai Baht")) {
                     itemselected = "THB";
-                    currentcySelected=thb;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Turkish Lira")) {
                     itemselected = "TRY";
-                    currentcySelected=turk;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("US Dollar")) {
                     itemselected = "USD";
-                    currentcySelected=usd;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("South African Rand")) {
                     itemselected = "ZAR";
-                    currentcySelected=zar;
+
                 } else if (li.getItemAtPosition(i).toString().equalsIgnoreCase("Euro")) {
                     itemselected = "EUR";
-                    currentcySelected=eur;
+
                 }
 //                System.out.println("sdrsrsd");
 //                System.out.println(itemselected);
+                System.out.println(itemselected);
+
+
+                for (int p = 0; p < allCurr.size(); p++) {
+
+                    if (itemselected.equalsIgnoreCase(allCurr.get(p).toString())) {
+                        currentcySelected = parseDouble(allCurr.get(p + 1));
+                    }
+
+                }
+
 
                 currText.setText(itemselected);
 
             }
         });
-
 
 
     }
