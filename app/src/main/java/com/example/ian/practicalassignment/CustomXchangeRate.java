@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 
 public class CustomXchangeRate extends AppCompatActivity {
 
     Spinner spin;
+    EditText name;
 
     ArrayAdapter<CharSequence>arr;
 
@@ -22,6 +24,8 @@ public class CustomXchangeRate extends AppCompatActivity {
 
 
         spin = (Spinner) findViewById(R.id.spin);
+        name = (EditText) findViewById(R.id.name);
+
         arr = ArrayAdapter.createFromResource(this, R.array.listCurr, android.R.layout.simple_spinner_dropdown_item);
        spin.setAdapter(arr);
 
@@ -29,6 +33,10 @@ public class CustomXchangeRate extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String a = spin.getSelectedItem().toString();
+
+                name.setText(a);
+
+
 
             }
 

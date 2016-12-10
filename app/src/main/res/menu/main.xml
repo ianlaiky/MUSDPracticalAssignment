@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/convert"
+        android:title="CONVERT"
+       app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/setting"
+        android:title="Settings"
+        />
+    <item
+        android:id="@+id/addCustom"
+        android:title="Add customer rate"
+        />
+    <item
+        android:id="@+id/loadDefault"
+        android:title="Load Default rates"
+        />
+
+</menu>
