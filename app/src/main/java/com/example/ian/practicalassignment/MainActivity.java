@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     List<String> listrate = new ArrayList<>();
     List<String> listcountry;
 
-    List<String> natt = new ArrayList<>();;
+
 
     final int RESULT_CODE = 1;
 
@@ -338,12 +338,11 @@ public class MainActivity extends AppCompatActivity {
 //        System.out.println("CCCCCC");
 
         refreshAllArray();
-        natt.addAll(listcountry);
-        natt.addAll(listcountrycode);
-        natt.addAll(listrate);
 
+//USE DB TO GET ARRAY
         ListAdapter myAdap = new ListCustomAdapter(this, natt);
         li.setAdapter(myAdap);
+
     }
 
 
