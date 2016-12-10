@@ -15,32 +15,52 @@ public class Currency extends Application {
 
     private List<String> currList;
     private List<Integer> currIdList;
- 
+
 
     private static Currency ourInstance = new Currency();
 
 
+    public Currency() {
+        currList = new ArrayList<String>();
+        currIdList = new ArrayList<Integer>();
 
 
+    }
 
+    public static Currency getInstance() {
+        return ourInstance;
+    }
 
+    ;
 
-public Currency(){
-    currList = new ArrayList<String>();
-    currIdList = new ArrayList<Integer>();
-
-
-
-}
-  public static Currency getInstance(){return ourInstance;};
-
-    public long addToDatabase(String codes, String countryCodes,String rates ,Context c) {
+    public long addToDatabase(String codes, String countryCodes, String rates, Context c) {
         MyDbAdapter db = new MyDbAdapter(c);
         db.open();
 
-        long rowIDoInsertedEntry = db.insertEntry(codes, countryCodes,rates);
+        long rowIDoInsertedEntry = db.insertEntry(codes, countryCodes, rates);
         db.close();
         return rowIDoInsertedEntry;
+    }
+
+    public void deleteAll(Context c) {
+        MyDbAdapter db = new MyDbAdapter(c);
+        db.open();
+
+        Cursor myCursor;
+        myCursor = db.retrieveAllEntriesCursor();
+
+
+       for(int i=0;i<currIdList.size();i++) {
+
+           System.out.println("DELETE running");
+           boolean updateStatus = db.removeEntry(currIdList.get(i));
+
+
+       }
+
+
+        db.close();
+
     }
 
     public boolean deleteFrmDatabase(int rowID, Context c) {
@@ -54,6 +74,7 @@ public Currency(){
 
         return updateStatus;
     }
+
     public List<String> retrieveAll(Context c) {
         System.out.println("TEST!");
 
@@ -72,11 +93,11 @@ public Currency(){
             myCursor.moveToFirst();
             do {
                 currIdList.add(myCursor.getInt(db.COLUMN_KEY_ID));
-            //    myString = myCursor.getString(db.COLUMN_CODES) + "-" + myCursor.getString(db.COLUMN_COUNTRY_CODES) + "-" + myCursor.getString(db.COLUMN_RATES) + "\n";
+                //    myString = myCursor.getString(db.COLUMN_CODES) + "-" + myCursor.getString(db.COLUMN_COUNTRY_CODES) + "-" + myCursor.getString(db.COLUMN_RATES) + "\n";
                 System.out.println("DB CHECK");
                 System.out.println(myCursor.getString(db.COLUMN_COUNTRY_CODES));
                 currList.add(myCursor.getString(db.COLUMN_CODES));
-                currList.add( myCursor.getString(db.COLUMN_COUNTRY_CODES));
+                currList.add(myCursor.getString(db.COLUMN_COUNTRY_CODES));
                 currList.add(myCursor.getString(db.COLUMN_RATES));
 
             } while (myCursor.moveToNext());

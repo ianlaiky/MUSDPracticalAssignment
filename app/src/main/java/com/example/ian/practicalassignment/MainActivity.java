@@ -10,12 +10,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static java.lang.Double.parseDouble;
@@ -30,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayAdapter<CharSequence> arr;
     ArrayList<String> allCurr = new ArrayList<String>();
+    List<String> listcountrycode = new ArrayList<>();
+    List<String> listrate = new ArrayList<>();
+    List<String> listcountry;
+
+    List<String> natt = new ArrayList<>();;
 
     final int RESULT_CODE = 1;
 
@@ -38,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     double currentcySelected;
     double newCurr;
 
+    int cleared = 0;
     Currency myCurrency;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -54,6 +62,33 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    public void refreshAllArray() {
+        String[] myResArray = getResources().getStringArray(R.array.listCurr);
+
+//        if(listcountry!=null){
+//            listcountry.clear();
+//        }
+//        if(listcountrycode!=null){
+//            listcountrycode.clear();
+//        }
+//        if(listrate!=null){
+//            listrate.clear();
+//        }
+//
+
+        if (cleared == 0) {
+            //country names
+            listcountry = Arrays.asList(myResArray);
+            for (int i = 0; i < allCurr.size(); i += 2) {
+
+                listcountrycode.add(allCurr.get(i));
+                listrate.add(allCurr.get(i + 1));
+
+            }
+            cleared = 1;
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.convert) {
@@ -65,8 +100,31 @@ public class MainActivity extends AppCompatActivity {
             te.setText(temp);
         } else if (item.getItemId() == R.id.addCustom) {
             Intent tn = new Intent(this, CustomXchangeRate.class);
-            tn.putExtra("arr",allCurr);
-           startActivity(tn);
+            tn.putExtra("arr", allCurr);
+            startActivity(tn);
+
+
+        } else if (item.getItemId() == R.id.loadDefault) {
+            System.out.println("arraytest");
+            refreshAllArray();
+
+            myCurrency = Currency.getInstance();
+            myCurrency.deleteAll(getApplicationContext());
+            for (int i = 0; i < listcountrycode.size(); i++) {
+
+
+                myCurrency.addToDatabase(listcountry.get(i), listcountrycode.get(i), listrate.get(i), getApplicationContext());
+
+            }
+            ArrayList<String> temp = (ArrayList<String>) myCurrency.retrieveAll(getApplicationContext());
+
+            System.out.println("CHECKING DB for load: " + temp.size());
+//            System.out.println("test array");
+//            for(int i=0;i<listcountrycode.size();i++){
+//                System.out.println(listcountry.get(i));
+//                System.out.println(listcountrycode.get(i));
+//                System.out.println(listrate.get(i));
+//            }
 
 
         }
@@ -149,10 +207,6 @@ public class MainActivity extends AppCompatActivity {
         te = (TextView) findViewById(R.id.curr);
         edit = (EditText) findViewById(R.id.imputte);
         currText = (TextView) findViewById(R.id.currText);
-
-
-        arr = ArrayAdapter.createFromResource(this, R.array.listCurr, android.R.layout.simple_spinner_dropdown_item);
-        li.setAdapter(arr);
 
 
         li.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -273,16 +327,23 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        System.out.println("TTTTTTT");
-myCurrency = Currency.getInstance();
+//        System.out.println("TTTTTTT");
+//        myCurrency = Currency.getInstance();
 
-        myCurrency.addToDatabase("ass","asdf","124",getApplicationContext());
+//         myCurrency.addToDatabase("ass","asdf","124",getApplicationContext());
+//        myCurrency.deleteAll(getApplicationContext());
+//        ArrayList<String> temp = (ArrayList<String>) myCurrency.retrieveAll(getApplicationContext());
+//        System.out.println(temp.get(0));
+//        System.out.println("CHECKING DB" + temp.size());
+//        System.out.println("CCCCCC");
 
-ArrayList<String> temp = (ArrayList<String>) myCurrency.retrieveAll(getApplicationContext());
-        System.out.println(temp.get(0));
-        System.out.println("CHECKING DB"+temp.size());
-        System.out.println("CCCCCC");
+        refreshAllArray();
+        natt.addAll(listcountry);
+        natt.addAll(listcountrycode);
+        natt.addAll(listrate);
 
+        ListAdapter myAdap = new ListCustomAdapter(this, natt);
+        li.setAdapter(myAdap);
     }
 
 
