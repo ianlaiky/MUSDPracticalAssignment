@@ -41,16 +41,16 @@ public class CustomXchangeRate extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==R.id.savee){
-           itemm.add(name.getText().toString());
-            itemm.add(rate.getText().toString());
-
-        Intent output = new Intent();
-            output.putExtra(RETURN_MSG,itemm);
-            setResult(RESULT_OK, output);
-            finish();
-
-        }
+//        if(item.getItemId()==R.id.savee){
+//           itemm.add(name.getText().toString());
+//            itemm.add(rate.getText().toString());
+//
+//        Intent output = new Intent();
+//            output.putExtra(RETURN_MSG,itemm);
+//            setResult(RESULT_OK, output);
+//            finish();
+//
+//        }
 
 
         return true;

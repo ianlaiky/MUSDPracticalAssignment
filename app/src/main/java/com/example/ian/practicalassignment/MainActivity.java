@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (item.getItemId() == R.id.addCustom) {
             Intent tn = new Intent(this, CustomXchangeRate.class);
             tn.putExtra("arr",allCurr);
-            startActivityForResult(tn,RESULT_CODE);
+           startActivity(tn);
 
 
         }
