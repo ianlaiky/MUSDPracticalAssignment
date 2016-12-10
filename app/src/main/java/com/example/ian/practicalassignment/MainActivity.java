@@ -26,7 +26,7 @@ import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 
 public class MainActivity extends AppCompatActivity {
-
+//test
     ListView li;
     TextView te;
     EditText edit;
