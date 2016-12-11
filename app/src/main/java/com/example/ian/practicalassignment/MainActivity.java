@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.convert) {
@@ -127,7 +128,8 @@ public class MainActivity extends AppCompatActivity {
 //            newCurr = parseDouble(edit.getText().toString()) / (currentcySelected);
 //            String temp = forma.format(newCurr) + "";
             for (int i = 0; i < tempALl.size(); i++) {
-                if (tempALl.get(i).getCountryCode() == itemselected) {
+                System.out.println(tempALl.get(i).getCountryCode());
+                if (tempALl.get(i).getCountryCode().equalsIgnoreCase(itemselected)) {
                     te.setText(tempALl.get(i).caculateCurrency(parseDouble(edit.getText().toString())));
                 }
             }
@@ -138,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
 //            tn.putExtra("arr", allCurr);
             startActivity(tn);
-
+            getAllFromDb();
 
         } else if (item.getItemId() == R.id.loadDefault) {
             System.out.println("arraytest");
@@ -162,9 +164,9 @@ public class MainActivity extends AppCompatActivity {
 //                System.out.println(listrate.get(i));
 //            }
 
-
+            getAllFromDb();
         }
-        getAllFromDb();
+
         return true;
     }
 
@@ -246,6 +248,8 @@ public class MainActivity extends AppCompatActivity {
         te = (TextView) findViewById(R.id.curr);
         edit = (EditText) findViewById(R.id.imputte);
         currText = (TextView) findViewById(R.id.currText);
+
+
 
 
         li.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -387,6 +391,7 @@ public class MainActivity extends AppCompatActivity {
 //        System.out.println(temp.get(0));
 //        System.out.println("CHECKING DB" + temp.size());
 //        System.out.println("CCCCCC");
+        itemselected="AUD";
 
 
         refreshAllArray();
