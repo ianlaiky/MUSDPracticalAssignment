@@ -15,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import static java.lang.Double.parseDouble;
@@ -32,6 +34,7 @@ public class CustomXchangeRate extends AppCompatActivity {
 
     String itemselected;
     Menu myMenu;
+    String countryCode;
 
     String currentcySelected;
 
@@ -47,7 +50,10 @@ public class CustomXchangeRate extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 //
 
-
+        Currency cur = new Currency();
+        cur = Currency.getInstance();
+        cur.addToDatabase(name.getText().toString(),countryCode,rate.getText().toString(),getApplicationContext());
+        finish();
         return true;
 
     }
@@ -89,6 +95,10 @@ public class CustomXchangeRate extends AppCompatActivity {
         name = (EditText) findViewById(R.id.name);
         rate = (EditText) findViewById(R.id.rateno);
 
+
+
+
+
 //        arr = ArrayAdapter.createFromResource(this, R.array.listCurr, android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(arr);
 //        getAllFromDb();
@@ -107,11 +117,15 @@ public class CustomXchangeRate extends AppCompatActivity {
 
                 TextView tv1 = (TextView) view.findViewById(R.id.customcountry);
                 TextView tv2 = (TextView) view.findViewById(R.id.customrate);
+                TextView tv3 = (TextView) view.findViewById(R.id.customcountrycode);
 
                 System.out.println("SEEEEE "+ tv1.getText().toString());
 
                 itemselected=tv2.getText().toString();
                 currentcySelected =tv1.getText().toString();
+                countryCode=tv3.getText().toString();
+
+
 
                 name.setText(currentcySelected);
                 rate.setText(itemselected);

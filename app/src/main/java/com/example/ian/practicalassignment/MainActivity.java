@@ -121,19 +121,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.convert) {
-//            DecimalFormat forma = new DecimalFormat("#0.00");
+            DecimalFormat forma = new DecimalFormat("#0.00");
             System.out.println("werrerwer");
             System.out.println("selected "+itemselected);
 
 //            newCurr = parseDouble(edit.getText().toString()) / (currentcySelected);
 //            String temp = forma.format(newCurr) + "";
-            for (int i = 0; i < tempALl.size(); i++) {
-                System.out.println(tempALl.get(i).getCountryCode());
-                if (tempALl.get(i).getCountryCode().equalsIgnoreCase(itemselected)) {
-                    te.setText(tempALl.get(i).caculateCurrency(parseDouble(edit.getText().toString())));
-                }
-            }
 
+
+//            for (int i = 0; i < tempALl.size(); i++) {
+//                System.out.println(tempALl.get(i).getCountryCode());
+//                if (tempALl.get(i).getCountryCode().equalsIgnoreCase(itemselected)) {
+//                    te.setText(tempALl.get(i).caculateCurrency(parseDouble(edit.getText().toString())));
+//                }
+//            }
+            te.setText(forma.format(parseDouble(edit.getText().toString()) / currentcySelected)+"");
 
         } else if (item.getItemId() == R.id.addCustom) {
             Intent tn = new Intent(this, CustomXchangeRate.class);
@@ -169,6 +171,10 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
+
+
+
+
 
 
 
@@ -399,4 +405,12 @@ public class MainActivity extends AppCompatActivity {
         getAllFromDb();
     }
 
+
+
+ public void onResume(){
+     super.onResume();
+     getAllFromDb();
+
+
+ }
 }
