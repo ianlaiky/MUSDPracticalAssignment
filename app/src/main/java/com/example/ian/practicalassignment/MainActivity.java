@@ -5,6 +5,7 @@ import android.icu.text.DecimalFormat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Currency> tempALl;
 
     int cleared = 0;
+    int acleared =0;
     Currency myCurrency;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -79,7 +81,16 @@ public class MainActivity extends AppCompatActivity {
 
 
         ListAdapter myAdap = new ListCustomAdapter(this, tempALl);
-        li.setAdapter(myAdap);
+
+
+        if(acleared==0){
+            li.setAdapter(myAdap);
+       acleared=1;
+        }else if(acleared==1){
+
+            li.setAdapter(myAdap);
+
+        }
     }
 
     @Override
@@ -256,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
         currText = (TextView) findViewById(R.id.currText);
 
 
-
+registerForContextMenu(li);
 
         li.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -388,6 +399,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
 //        System.out.println("TTTTTTT");
 //        myCurrency = Currency.getInstance();
 
@@ -405,7 +418,26 @@ public class MainActivity extends AppCompatActivity {
         getAllFromDb();
     }
 
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo info) {
+//        menu.setHeaderTitle("Context Menu");
+        menu.add(0, v.getId(), 0, "Delete");
 
+    }
+
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int index = info.position;
+        View view = info.targetView;
+
+        System.out.println("INDEX POSI"+index);
+
+        Currency cu = new Currency();
+        cu = Currency.getInstance();
+        cu.deleteFrmDatabase(index,getApplicationContext());
+
+        getAllFromDb();
+        return true;
+    }
 
  public void onResume(){
      super.onResume();
