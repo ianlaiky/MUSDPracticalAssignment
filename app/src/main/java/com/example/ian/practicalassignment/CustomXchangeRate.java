@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -32,7 +33,7 @@ public class CustomXchangeRate extends AppCompatActivity {
     String itemselected;
     Menu myMenu;
 
-    double currencySelected;
+    String currentcySelected;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -101,6 +102,20 @@ public class CustomXchangeRate extends AppCompatActivity {
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+
+                TextView tv1 = (TextView) view.findViewById(R.id.customcountry);
+                TextView tv2 = (TextView) view.findViewById(R.id.customrate);
+
+                System.out.println("SEEEEE "+ tv1.getText().toString());
+
+                itemselected=tv2.getText().toString();
+                currentcySelected =tv1.getText().toString();
+
+                name.setText(currentcySelected);
+                rate.setText(itemselected);
+
 //                String a = spin.getSelectedItem().toString();
 //                name.setText(a);
 //                if (spin.getSelectedItem().toString().equalsIgnoreCase("Australian Dollar")) {
