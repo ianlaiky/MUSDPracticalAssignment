@@ -19,7 +19,8 @@ import java.util.List;
 public class ListCustomAdapter extends ArrayAdapter<String> {
 
     private Context context;
-    ArrayList<Currency> currency = new ArrayList<>();;
+    ArrayList<Currency> currency = new ArrayList<>();
+    ;
 
 
     public ListCustomAdapter(Context c, ArrayList countr) {
@@ -41,7 +42,7 @@ public class ListCustomAdapter extends ArrayAdapter<String> {
         TextView customCountryCode = (TextView) rowView.findViewById(R.id.customcountrycode);
         TextView customRates = (TextView) rowView.findViewById(R.id.customrate);
 
-        if(currency!=null){
+        if (currency != null) {
 //            System.out.println(currency.get(0).get(position).toString());
 //            System.out.println(currency.get(1).get(position).toString());
 //            System.out.println(currency.get(2).get(position).toString());
@@ -51,17 +52,35 @@ public class ListCustomAdapter extends ArrayAdapter<String> {
             customRates.setText(currency.get(position).getRate());
 
 
-
-
-
         }
 
 
         return rowView;
     }
 
+    @Override
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+
+        View rowView = inflater.inflate(R.layout.custom_list, parent, false);
+
+
+        TextView customCountry = (TextView) rowView.findViewById(R.id.customcountry);
+        TextView customCountryCode = (TextView) rowView.findViewById(R.id.customcountrycode);
+        TextView customRates = (TextView) rowView.findViewById(R.id.customrate);
+
+        if (currency != null) {
+//            System.out.println(currency.get(0).get(position).toString());
+//            System.out.println(currency.get(1).get(position).toString());
+//            System.out.println(currency.get(2).get(position).toString());
+
+            customCountry.setText(currency.get(position).getCountry());
+            customCountryCode.setText(currency.get(position).getCountryCode());
+            customRates.setText(currency.get(position).getRate());
+
+        }
+        return rowView;
+    }
+
 
 }
-
-
-
