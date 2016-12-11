@@ -16,6 +16,10 @@ public class Currency extends Application {
     private List<String> currList;
     private List<Integer> currIdList;
 
+    private String country;
+    private String countryCode;
+    private String rate;
+
 
     private static Currency ourInstance = new Currency();
 
@@ -27,11 +31,42 @@ public class Currency extends Application {
 
     }
 
-    public static Currency getInstance() {
-        return ourInstance;
+
+    public Currency(String country, String countryCode, String rate) {
+        this.country = country;
+        this.countryCode = countryCode;
+        this.rate = rate;
     }
 
-    ;
+    public String getRate() {
+        return rate;
+    }
+
+    public void setRate(String rate) {
+        this.rate = rate;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public static Currency getInstance() {
+        return ourInstance;
+    };
+
+
 
     public long addToDatabase(String codes, String countryCodes, String rates, Context c) {
         MyDbAdapter db = new MyDbAdapter(c);

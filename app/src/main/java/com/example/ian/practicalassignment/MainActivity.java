@@ -68,18 +68,21 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String>tempRate = new ArrayList<>();
 
 
-        ArrayList<ArrayList>tempALl = new ArrayList<ArrayList>();
+        ArrayList<Currency>tempALl = new ArrayList<Currency>();
 
         for(int i=0;i<temparr.size();i+=3){
-            tempCountry.add(temparr.get(i));
-            tempCountryCode.add(temparr.get(i+1));
-            tempRate.add(temparr.get(i+2));
+//            tempCountry.add(temparr.get(i));
+//            tempCountryCode.add(temparr.get(i+1));
+//            tempRate.add(temparr.get(i+2));
+
+            Currency c= new Currency(temparr.get(i),temparr.get(i+1),temparr.get(i+2));
+            tempALl.add(c);
 
         }
 
-        tempALl.add(tempCountry);
-        tempALl.add(tempCountryCode);
-        tempALl.add(tempRate);
+//        tempALl.add(tempCountry);
+//        tempALl.add(tempCountryCode);
+//        tempALl.add(tempRate);
 
         System.out.println("NO IN ARR");
 
