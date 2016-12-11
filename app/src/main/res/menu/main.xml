@@ -14,7 +14,7 @@
         />
     <item
         android:id="@+id/addCustom"
-        android:title="Add customer rate"
+        android:title="Add custom rate"
         />
     <item
         android:id="@+id/loadDefault"

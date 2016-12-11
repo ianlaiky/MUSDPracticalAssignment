@@ -3,9 +3,12 @@ package com.example.ian.practicalassignment;
 import android.app.Application;
 import android.content.Context;
 import android.database.Cursor;
+import android.icu.text.DecimalFormat;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.lang.Double.parseDouble;
 
 /**
  * Created by Ian on 10/12/2016.
@@ -28,6 +31,13 @@ public class Currency extends Application {
         currList = new ArrayList<String>();
         currIdList = new ArrayList<Integer>();
 
+
+    }
+    public String caculateCurrency(double input){
+        DecimalFormat forma = new DecimalFormat("#0.00");
+        String temp = forma.format(input/parseDouble(rate));
+
+        return temp;
 
     }
 
