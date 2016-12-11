@@ -2,8 +2,8 @@ package com.example.ian.practicalassignment;
 
 import android.content.Intent;
 import android.icu.text.DecimalFormat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,25 +21,19 @@ import java.util.Arrays;
 import java.util.List;
 
 import static java.lang.Double.parseDouble;
-import static java.lang.Integer.parseInt;
 
 public class MainActivity extends AppCompatActivity {
 
+    final int RESULT_CODE = 1;
     ListView li;
     TextView te;
     EditText edit;
     TextView currText;
-
     ArrayAdapter<CharSequence> arr;
     ArrayList<String> allCurr = new ArrayList<String>();
     List<String> listcountrycode = new ArrayList<>();
     List<String> listrate = new ArrayList<>();
     List<String> listcountry;
-
-
-
-    final int RESULT_CODE = 1;
-
     Menu myMenu;
     String itemselected = "";
     double currentcySelected;
@@ -54,43 +48,29 @@ public class MainActivity extends AppCompatActivity {
     private GoogleApiClient client;
 
 
-    public void getAllFromDb(){
+    public void getAllFromDb() {
 
 
         //USE DB TO GET ARRAY
         Currency temp = new Currency();
         temp = Currency.getInstance();
 
-        ArrayList<String>temparr = (ArrayList<String>) temp.retrieveAll(getApplicationContext());
-
-        ArrayList<String>tempCountry = new ArrayList<String>();
-        ArrayList<String>tempCountryCode = new ArrayList<String>();
-        ArrayList<String>tempRate = new ArrayList<>();
+        ArrayList<String> temparr = (ArrayList<String>) temp.retrieveAll(getApplicationContext());
 
 
-        ArrayList<Currency>tempALl = new ArrayList<Currency>();
+        ArrayList<Currency> tempALl = new ArrayList<Currency>();
 
-        for(int i=0;i<temparr.size();i+=3){
-//            tempCountry.add(temparr.get(i));
-//            tempCountryCode.add(temparr.get(i+1));
-//            tempRate.add(temparr.get(i+2));
+        for (int i = 0; i < temparr.size(); i += 3) {
 
-            Currency c= new Currency(temparr.get(i),temparr.get(i+1),temparr.get(i+2));
+
+            Currency c = new Currency(temparr.get(i), temparr.get(i + 1), temparr.get(i + 2));
             tempALl.add(c);
 
         }
 
-//        tempALl.add(tempCountry);
-//        tempALl.add(tempCountryCode);
-//        tempALl.add(tempRate);
 
         System.out.println("NO IN ARR");
 
-        for(int i=0;i<tempCountry.size();i+=3){
-//            System.out.println(tempALl.get(1).size());
-
-
-        }
 
         ListAdapter myAdap = new ListCustomAdapter(this, tempALl);
         li.setAdapter(myAdap);
