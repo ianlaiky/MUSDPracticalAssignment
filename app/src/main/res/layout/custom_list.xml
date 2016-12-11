@@ -3,14 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:padding="30dp"
+    android:padding="20dp"
     android:weightSum="100"
 
 
     >
 <LinearLayout
-    android:layout_weight="60"
-    android:layout_width="wrap_content"
+    android:layout_width="231dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
 
@@ -19,7 +18,7 @@
         android:id="@+id/customcountry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Australian Dollar"
+        android:text="werwer "
         android:textSize="20sp"
         />
     <TextView
@@ -35,7 +34,7 @@
 
 
     <LinearLayout
-        android:layout_weight="60"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 

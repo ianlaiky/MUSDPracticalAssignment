@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void getAllFromDb() {
 
-
+        DecimalFormat forma = new DecimalFormat("#0.00");
         //USE DB TO GET ARRAY
         Currency temp = new Currency();
         temp = Currency.getInstance();
@@ -61,9 +61,10 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Currency> tempALl = new ArrayList<Currency>();
 
         for (int i = 0; i < temparr.size(); i += 3) {
+//            System.out.println("DATA "+temparr.get(i + 2));
+            String a =  forma.format(parseDouble(temparr.get(i + 2)));
 
-
-            Currency c = new Currency(temparr.get(i), temparr.get(i + 1), temparr.get(i + 2));
+            Currency c = new Currency(temparr.get(i), temparr.get(i + 1),a);
             tempALl.add(c);
 
         }

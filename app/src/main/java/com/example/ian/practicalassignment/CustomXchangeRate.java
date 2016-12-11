@@ -1,6 +1,7 @@
 package com.example.ian.practicalassignment;
 
 import android.content.Intent;
+import android.icu.text.DecimalFormat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,7 +10,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 
 import java.util.ArrayList;
 
@@ -56,7 +59,34 @@ public class CustomXchangeRate extends AppCompatActivity {
         return true;
 
     }
+    public void getAllFromDb() {
 
+        DecimalFormat forma = new DecimalFormat("#0.00");
+        //USE DB TO GET ARRAY
+        Currency temp = new Currency();
+        temp = Currency.getInstance();
+
+        ArrayList<String> temparr = (ArrayList<String>) temp.retrieveAll(getApplicationContext());
+
+
+        ArrayList<Currency> tempALl = new ArrayList<Currency>();
+
+        for (int i = 0; i < temparr.size(); i += 3) {
+//            System.out.println("DATA "+temparr.get(i + 2));
+            String a =  forma.format(parseDouble(temparr.get(i + 2)));
+
+            Currency c = new Currency(temparr.get(i), temparr.get(i + 1),a);
+            tempALl.add(c);
+
+        }
+
+
+        System.out.println("NO IN ARR");
+
+
+        SpinnerAdapter myAdap = new ListCustomAdapter(this, tempALl);
+        spin.setAdapter(myAdap);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,9 +97,9 @@ public class CustomXchangeRate extends AppCompatActivity {
         name = (EditText) findViewById(R.id.name);
         rate = (EditText) findViewById(R.id.rateno);
 
-        arr = ArrayAdapter.createFromResource(this, R.array.listCurr, android.R.layout.simple_spinner_dropdown_item);
-        spin.setAdapter(arr);
-
+//        arr = ArrayAdapter.createFromResource(this, R.array.listCurr, android.R.layout.simple_spinner_dropdown_item);
+//        spin.setAdapter(arr);
+        getAllFromDb();
 
         Bundle bundle = getIntent().getExtras();
 
