@@ -54,6 +54,45 @@ public class MainActivity extends AppCompatActivity {
     private GoogleApiClient client;
 
 
+    public void getAllFromDb(){
+
+
+        //USE DB TO GET ARRAY
+        Currency temp = new Currency();
+        temp = Currency.getInstance();
+
+        ArrayList<String>temparr = (ArrayList<String>) temp.retrieveAll(getApplicationContext());
+
+        ArrayList<String>tempCountry = new ArrayList<String>();
+        ArrayList<String>tempCountryCode = new ArrayList<String>();
+        ArrayList<String>tempRate = new ArrayList<>();
+
+
+        ArrayList<ArrayList>tempALl = new ArrayList<ArrayList>();
+
+        for(int i=0;i<temparr.size();i+=3){
+            tempCountry.add(temparr.get(i));
+            tempCountryCode.add(temparr.get(i+1));
+            tempRate.add(temparr.get(i+2));
+
+        }
+
+        tempALl.add(tempCountry);
+        tempALl.add(tempCountryCode);
+        tempALl.add(tempRate);
+
+        System.out.println("NO IN ARR");
+
+        for(int i=0;i<tempCountry.size();i+=3){
+//            System.out.println(tempALl.get(1).size());
+
+
+        }
+
+        ListAdapter myAdap = new ListCustomAdapter(this, tempALl);
+        li.setAdapter(myAdap);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -339,11 +378,7 @@ public class MainActivity extends AppCompatActivity {
 
         refreshAllArray();
 
-//USE DB TO GET ARRAY
-        ListAdapter myAdap = new ListCustomAdapter(this, natt);
-        li.setAdapter(myAdap);
-
+        getAllFromDb();
     }
-
 
 }

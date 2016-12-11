@@ -19,13 +19,13 @@ import java.util.List;
 public class ListCustomAdapter extends ArrayAdapter<String> {
 
     private Context context;
-    List<String> currency = new ArrayList<>();;
+    ArrayList<ArrayList> currency = new ArrayList<>();;
 
 
-    public ListCustomAdapter(Context c, List country,List code,List rate) {
+    public ListCustomAdapter(Context c, ArrayList countr) {
 
-        super(c, R.layout.custom_list, country,code,rate);
-        this.currency = currency;
+        super(c, R.layout.custom_list, countr);
+        this.currency = countr;
         this.context = c;
 
     }
@@ -46,9 +46,9 @@ public class ListCustomAdapter extends ArrayAdapter<String> {
 //            System.out.println(currency.get(1).get(position).toString());
 //            System.out.println(currency.get(2).get(position).toString());
 
-//            customCountry.setText(currency.get(0).get(position).toString());
-//            customCountry.setText(currency.get(1).get(position).toString());
-//            customCountry.setText(currency.get(2).get(position).toString());
+            customCountry.setText(currency.get(0).get(position).toString());
+            customCountryCode.setText(currency.get(1).get(position).toString());
+            customRates.setText(currency.get(2).get(position).toString());
 
 
 
