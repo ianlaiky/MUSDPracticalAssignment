@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.icu.text.DecimalFormat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,11 +17,13 @@ import android.widget.TextView;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import org.w3c.dom.Text;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static java.lang.Double.parseDouble;
 
@@ -44,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
     double newCurr;
 
     ArrayList<Currency> tempALl;
-
+    JSONObject a;
     int cleared = 0;
-    int acleared =0;
+    int acleared = 0;
     Currency myCurrency;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -54,6 +55,71 @@ public class MainActivity extends AppCompatActivity {
      */
     private GoogleApiClient client;
 
+    public void getFromAPI(JSONObject a) {
+
+        refreshAllArray();
+
+
+        myCurrency.deleteAll(getApplicationContext());
+        for (int i = 0; i < listcountrycode.size(); i++) {
+
+
+            myCurrency.addToDatabase(listcountry.get(i), listcountrycode.get(i), listrate.get(i), getApplicationContext());
+
+        }
+        ArrayList<String> temp = (ArrayList<String>) myCurrency.retrieveAll(getApplicationContext());
+
+
+        getAllFromDb();
+
+        System.out.println("CHECKING DB for load: " + temp.size());
+
+        ArrayList<String> country = new ArrayList<String>();
+        ArrayList<String> countrycode = new ArrayList<String>();
+        ArrayList<String> rates = new ArrayList<String>();
+
+//        System.out.println("TTTEE"+tempALl.size());
+//        for(int i=0;i<tempALl.size();i++){
+//            System.out.println(tempALl.get(i).getCountry());
+//            System.out.println(i);
+//
+//        }
+
+        for (int i = 0; i < tempALl.size(); i++) {
+            country.add(tempALl.get(i).getCountry());
+            countrycode.add(tempALl.get(i).getCountryCode());
+            rates.add(tempALl.get(i).getRate());
+
+            System.out.println("TTTT");
+            System.out.println(tempALl.get(i).getCountry());
+            System.out.println("GLORY"+i);
+            System.out.println(tempALl.get(i).getRate());
+
+        }
+
+        myCurrency.deleteAll(getApplicationContext());
+
+        System.out.println("NATA");
+        System.out.println(country.size());
+        System.out.println(countrycode.size());
+        System.out.println(rates.size());
+
+        for(int i=0;i<country.size();i++){
+            try {
+                myCurrency.addToDatabase(country.get(i),countrycode.get(i),a.getString(countrycode.get(i)),getApplicationContext());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+        System.out.println("DUDEwaa"+tempALl.get(0).getRate());
+
+//        ListAdapter myAdap = new ListCustomAdapter(this, tempALl);
+//        li.setAdapter(myAdap);
+        getAllFromDb();
+
+    }
 
     public void getAllFromDb() {
 
@@ -78,15 +144,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         System.out.println("NO IN ARR");
+        System.out.println("GTTTE"+tempALl.get(0).getRate());
+        System.out.println(temparr.get(2));
 
 
         ListAdapter myAdap = new ListCustomAdapter(this, tempALl);
 
 
-        if(acleared==0){
+        if (acleared == 0) {
             li.setAdapter(myAdap);
-       acleared=1;
-        }else if(acleared==1){
+            acleared = 1;
+        } else if (acleared == 1) {
 
             li.setAdapter(myAdap);
 
@@ -134,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.convert) {
             DecimalFormat forma = new DecimalFormat("#0.00");
             System.out.println("werrerwer");
-            System.out.println("selected "+itemselected);
+            System.out.println("selected " + itemselected);
 
 //            newCurr = parseDouble(edit.getText().toString()) / (currentcySelected);
 //            String temp = forma.format(newCurr) + "";
@@ -146,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
 //                    te.setText(tempALl.get(i).caculateCurrency(parseDouble(edit.getText().toString())));
 //                }
 //            }
-            te.setText(forma.format(parseDouble(edit.getText().toString()) / currentcySelected)+"");
+            te.setText(forma.format(parseDouble(edit.getText().toString()) / currentcySelected) + "");
 
         } else if (item.getItemId() == R.id.addCustom) {
             Intent tn = new Intent(this, CustomXchangeRate.class);
@@ -182,11 +250,6 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
-
-
-
-
-
 
 
     @Override
@@ -267,7 +330,7 @@ public class MainActivity extends AppCompatActivity {
         currText = (TextView) findViewById(R.id.currText);
 
 
-registerForContextMenu(li);
+        registerForContextMenu(li);
 
         li.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -281,7 +344,7 @@ registerForContextMenu(li);
 
                 System.out.println(tv1.getText().toString());
 
-                itemselected=tv2.getText().toString();
+                itemselected = tv2.getText().toString();
                 currentcySelected = parseDouble(tv1.getText().toString());
 
 
@@ -410,15 +473,25 @@ registerForContextMenu(li);
 //        System.out.println(temp.get(0));
 //        System.out.println("CHECKING DB" + temp.size());
 //        System.out.println("CCCCCC");
-        itemselected="AUD";
+        itemselected = "AUD";
 
         String url = String.format("http://api.fixer.io/latest?base=SGD");
 
-        new GetOnlineCurrency().execute(url);
+        try {
+            a = new GetOnlineCurrency().execute(url).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
-        refreshAllArray();
+        System.out.println("MAINN" + a);
 
-        getAllFromDb();
+        getFromAPI(a);
+
+//        refreshAllArray();
+
+//        getAllFromDb();
     }
 
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo info) {
@@ -432,20 +505,22 @@ registerForContextMenu(li);
         int index = info.position;
         View view = info.targetView;
 
-        System.out.println("INDEX POSI"+index);
+        System.out.println("INDEX POSI" + index);
 
         Currency cu = new Currency();
         cu = Currency.getInstance();
-        cu.deleteFrmDatabase(index,getApplicationContext());
+        cu.deleteFrmDatabase(index, getApplicationContext());
 
         getAllFromDb();
         return true;
     }
 
- public void onResume(){
-     super.onResume();
-     getAllFromDb();
+    public void onResume() {
+        super.onResume();
+        getAllFromDb();
 
 
- }
+    }
+
+
 }
