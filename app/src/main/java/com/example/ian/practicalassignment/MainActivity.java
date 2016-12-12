@@ -412,6 +412,9 @@ registerForContextMenu(li);
 //        System.out.println("CCCCCC");
         itemselected="AUD";
 
+        String url = String.format("http://api.fixer.io/latest?base=SGD");
+
+        new GetOnlineCurrency().execute(url);
 
         refreshAllArray();
 
