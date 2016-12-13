@@ -14,6 +14,7 @@ import static java.lang.Double.parseDouble;
  * Created by Ian on 10/12/2016.
  */
 
+
 public class Currency extends Application {
 
     private List<String> currList;
