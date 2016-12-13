@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     public void getFromAPI(JSONObject a) {
 
         refreshAllArray();
-
+        getAllFromDb();
 
         myCurrency.deleteAll(getApplicationContext());
         for (int i = 0; i < listcountrycode.size(); i++) {
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> temp = (ArrayList<String>) myCurrency.retrieveAll(getApplicationContext());
 
 
-        getAllFromDb();
+
 
         System.out.println("CHECKING DB for load: " + temp.size());
 
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //        }
 
-        for (int i = 0; i < tempALl.size(); i++) {
+        for (int i = 0; i < 31; i++) {
             country.add(tempALl.get(i).getCountry());
             countrycode.add(tempALl.get(i).getCountryCode());
             rates.add(tempALl.get(i).getRate());
@@ -96,6 +96,20 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(tempALl.get(i).getRate());
 
         }
+ArrayList<Currency>rr=new ArrayList<>();
+        if(tempALl.size()>31){
+        for(int i=31;i<tempALl.size();i++) {
+rr.add(tempALl.get(i));
+        }
+
+        }
+
+
+
+
+
+
+
 
         myCurrency.deleteAll(getApplicationContext());
 
@@ -113,6 +127,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+        for(int i=0;i<rr.size();i++){
+
+            myCurrency.addToDatabase(rr.get(i).getCountry(),rr.get(i).getCountryCode(),rr.get(i).getRate(),getApplicationContext());
+
+        }
+
         System.out.println("DUDEwaa"+tempALl.get(0).getRate());
 
 //        ListAdapter myAdap = new ListCustomAdapter(this, tempALl);
@@ -494,30 +514,31 @@ public class MainActivity extends AppCompatActivity {
 //        getAllFromDb();
     }
 
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo info) {
-//        menu.setHeaderTitle("Context Menu");
-        menu.add(0, v.getId(), 0, "Delete");
-
-    }
-
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        int index = info.position;
-        View view = info.targetView;
-
-        System.out.println("INDEX POSI" + index);
-
-        Currency cu = new Currency();
-        cu = Currency.getInstance();
-        cu.deleteFrmDatabase(index, getApplicationContext());
-
-        getAllFromDb();
-        return true;
-    }
+//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo info) {
+////        menu.setHeaderTitle("Context Menu");
+//        menu.add(0, v.getId(), 0, "Delete");
+//
+//    }
+//
+//    public boolean onContextItemSelected(MenuItem item) {
+//        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+//        int index = info.position;
+//        View view = info.targetView;
+//
+//        System.out.println("INDEX POSI" + index);
+//
+//        Currency cu = new Currency();
+//        cu = Currency.getInstance();
+//        cu.deleteFrmDatabase(index, getApplicationContext());
+//
+//        getAllFromDb();
+//        return true;
+//    }
 
     public void onResume() {
         super.onResume();
         getAllFromDb();
+
 
 
     }
