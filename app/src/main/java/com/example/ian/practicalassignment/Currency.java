@@ -34,9 +34,10 @@ public class Currency extends Application {
 
 
     }
-    public String caculateCurrency(double input){
+
+    public String caculateCurrency(double input) {
         DecimalFormat forma = new DecimalFormat("#0.00");
-        String temp = forma.format(input/parseDouble(rate));
+        String temp = forma.format(input / parseDouble(rate));
 
         return temp;
 
@@ -75,8 +76,9 @@ public class Currency extends Application {
 
     public static Currency getInstance() {
         return ourInstance;
-    };
+    }
 
+    ;
 
 
     public long addToDatabase(String codes, String countryCodes, String rates, Context c) {
@@ -96,13 +98,13 @@ public class Currency extends Application {
         myCursor = db.retrieveAllEntriesCursor();
 
 
-       for(int i=0;i<currIdList.size();i++) {
+        for (int i = 0; i < currIdList.size(); i++) {
 
-           System.out.println("DELETE running");
-           boolean updateStatus = db.removeEntry(currIdList.get(i));
+            System.out.println("DELETE running");
+            boolean updateStatus = db.removeEntry(currIdList.get(i));
 
 
-       }
+        }
 
 
         db.close();
@@ -151,7 +153,6 @@ public class Currency extends Application {
         db.close();
         return currList;
     }
-
 
 
 }

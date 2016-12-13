@@ -1,21 +1,17 @@
 package com.example.ian.practicalassignment;
 
-import android.content.Intent;
 import android.icu.text.DecimalFormat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -30,7 +26,7 @@ public class CustomXchangeRate extends AppCompatActivity {
     ArrayList<String> array = new ArrayList<String>();
     ArrayAdapter<CharSequence> arr;
 
-    ArrayList<String>itemm;
+    ArrayList<String> itemm;
 
     String itemselected;
     Menu myMenu;
@@ -52,11 +48,12 @@ public class CustomXchangeRate extends AppCompatActivity {
 
         Currency cur = new Currency();
         cur = Currency.getInstance();
-        cur.addToDatabase(name.getText().toString(),countryCode,rate.getText().toString(),getApplicationContext());
+        cur.addToDatabase(name.getText().toString(), countryCode, rate.getText().toString(), getApplicationContext());
         finish();
         return true;
 
     }
+
     public void getAllFromDb() {
 
         DecimalFormat forma = new DecimalFormat("#0.00");
@@ -71,9 +68,9 @@ public class CustomXchangeRate extends AppCompatActivity {
 
         for (int i = 0; i < temparr.size(); i += 3) {
 //            System.out.println("DATA "+temparr.get(i + 2));
-            String a =  forma.format(parseDouble(temparr.get(i + 2)));
+            String a = forma.format(parseDouble(temparr.get(i + 2)));
 
-            Currency c = new Currency(temparr.get(i), temparr.get(i + 1),a);
+            Currency c = new Currency(temparr.get(i), temparr.get(i + 1), a);
             tempALl.add(c);
 
         }
@@ -85,6 +82,7 @@ public class CustomXchangeRate extends AppCompatActivity {
         SpinnerAdapter myAdap = new ListCustomAdapter(this, tempALl);
         spin.setAdapter(myAdap);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,9 +92,6 @@ public class CustomXchangeRate extends AppCompatActivity {
         spin = (Spinner) findViewById(R.id.spin);
         name = (EditText) findViewById(R.id.name);
         rate = (EditText) findViewById(R.id.rateno);
-
-
-
 
 
 //        arr = ArrayAdapter.createFromResource(this, R.array.listCurr, android.R.layout.simple_spinner_dropdown_item);
@@ -114,17 +109,15 @@ public class CustomXchangeRate extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
 
-
                 TextView tv1 = (TextView) view.findViewById(R.id.customcountry);
                 TextView tv2 = (TextView) view.findViewById(R.id.customrate);
                 TextView tv3 = (TextView) view.findViewById(R.id.customcountrycode);
 
-                System.out.println("SEEEEE "+ tv1.getText().toString());
+                System.out.println("SEEEEE " + tv1.getText().toString());
 
-                itemselected=tv2.getText().toString();
-                currentcySelected =tv1.getText().toString();
-                countryCode=tv3.getText().toString();
-
+                itemselected = tv2.getText().toString();
+                currentcySelected = tv1.getText().toString();
+                countryCode = tv3.getText().toString();
 
 
                 name.setText(currentcySelected);

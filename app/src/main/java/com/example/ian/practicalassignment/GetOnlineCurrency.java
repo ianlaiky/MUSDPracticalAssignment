@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * Created by Ian on 12/12/2016.
  */
 
-public class GetOnlineCurrency extends AsyncTask<String, Void, JSONObject > {
+public class GetOnlineCurrency extends AsyncTask<String, Void, JSONObject> {
 
     JSONObject obj;
 

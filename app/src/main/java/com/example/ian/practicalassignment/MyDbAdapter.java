@@ -23,12 +23,12 @@ public class MyDbAdapter {
     public static final String CODES = "codes";
     public static final int COLUMN_CODES = 1;
     public static final String COUNTRY_CODES = "country_codes";
-    public static final int COLUMN_COUNTRY_CODES= 2;
+    public static final int COLUMN_COUNTRY_CODES = 2;
     public static final String RATES = "rates";
     public static final int COLUMN_RATES = 3;
 
-    protected static final String DATABASE_CREATE = "create table " + DATABASE_TABLE + " " + "(" + KEY_ID + " integer primary key autoincrement, " + CODES +TEXT_TYPE+COMMA_SEP+
-            COUNTRY_CODES+TEXT_TYPE+COMMA_SEP+RATES+TEXT_TYPE+" )";
+    protected static final String DATABASE_CREATE = "create table " + DATABASE_TABLE + " " + "(" + KEY_ID + " integer primary key autoincrement, " + CODES + TEXT_TYPE + COMMA_SEP +
+            COUNTRY_CODES + TEXT_TYPE + COMMA_SEP + RATES + TEXT_TYPE + " )";
 
     private String MYDBADAPTER_LOG_CAT = "MY_LOG";
 
@@ -68,7 +68,7 @@ public class MyDbAdapter {
 
     }
 
-    public long insertEntry(String codes, String countryCodes,String rates) {
+    public long insertEntry(String codes, String countryCodes, String rates) {
         ContentValues newEntryValues = new ContentValues();
 
         newEntryValues.put(CODES, codes);
@@ -97,13 +97,13 @@ public class MyDbAdapter {
 
     }
 
-    public boolean updateEntry(long _rowIndex, String codes, String countryCodes,String rates) {
+    public boolean updateEntry(long _rowIndex, String codes, String countryCodes, String rates) {
         ContentValues cv = new ContentValues();
-        cv.put(CODES,codes); //These Fields should be your String values of actual column names
-        cv.put(COUNTRY_CODES,countryCodes);
-        cv.put(RATES,rates);
+        cv.put(CODES, codes); //These Fields should be your String values of actual column names
+        cv.put(COUNTRY_CODES, countryCodes);
+        cv.put(RATES, rates);
 
-        _db.update(DATABASE_TABLE,cv,"_id="+_rowIndex,null);
+        _db.update(DATABASE_TABLE, cv, "_id=" + _rowIndex, null);
 
         return false;
     }
@@ -113,7 +113,7 @@ public class MyDbAdapter {
         Cursor c = null;
 
         try {
-            c = _db.query(DATABASE_TABLE, new String[]{KEY_ID, CODES, COUNTRY_CODES,RATES},
+            c = _db.query(DATABASE_TABLE, new String[]{KEY_ID, CODES, COUNTRY_CODES, RATES},
                     null, null, null, null, null);
         } catch (SQLiteException e) {
             Log.w(MYDBADAPTER_LOG_CAT, "Retrieve fail!");
