@@ -587,6 +587,29 @@ public class MainActivity extends AppCompatActivity {
 
         getFromAPI(a);
 
+        System.out.println("arraytest");
+        refreshAllArray();
+
+
+        myCurrency.deleteAll(getApplicationContext());
+        for (int i = 0; i < listcountrycode.size(); i++) {
+
+
+            myCurrency.addToDatabase(listcountry.get(i), listcountrycode.get(i), listrate.get(i), getApplicationContext());
+
+        }
+        ArrayList<String> temp = (ArrayList<String>) myCurrency.retrieveAll(getApplicationContext());
+
+        System.out.println("CHECKING DB for load: " + temp.size());
+//            System.out.println("test array");
+//            for(int i=0;i<listcountrycode.size();i++){
+//                System.out.println(listcountry.get(i));
+//                System.out.println(listcountrycode.get(i));
+//                System.out.println(listrate.get(i));
+//            }
+
+        getAllFromDb();
+
 //        refreshAllArray();
 
 //        getAllFromDb();
@@ -611,6 +634,7 @@ public class MainActivity extends AppCompatActivity {
 //
 //        getAllFromDb();
 //        return true;
+
 //    }
 
     public void onResume() {
