@@ -95,11 +95,11 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(tempALl.get(i).getRate());
 
         }
-        ArrayList<Currency>rr=new ArrayList<>();
+ArrayList<Currency>rr=new ArrayList<>();
         if(tempALl.size()>31){
-            for(int i=31;i<tempALl.size();i++) {
-                rr.add(tempALl.get(i));
-            }
+        for(int i=31;i<tempALl.size();i++) {
+rr.add(tempALl.get(i));
+        }
 
         }
 
@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> temparr = (ArrayList<String>) temp.retrieveAll(getApplicationContext());
 
 
+        System.out.println("size of ss"+temparr.size());
         tempALl = new ArrayList<Currency>();
 
         for (int i = 0; i < temparr.size(); i += 3) {
@@ -160,50 +161,6 @@ public class MainActivity extends AppCompatActivity {
             tempALl.add(c);
 
         }
-        if(tempALl.isEmpty()){
-            myCurrency.addToDatabase("AUD","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("BGN","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("BRL","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("CAD","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("CHF","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("CNY","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("CZK","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("DKK","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("GBP","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("HKD","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("HRK","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("HUF","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("IDR","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("ILS","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("INR","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("JPY","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("KRW","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("MXN","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("MYR","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("NOK","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("NZD","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("PHP","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("PLN","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("RON","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("RUB","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("SEK","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("THB","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("TRY","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("USD","aus","0.5",getApplicationContext());
-            myCurrency.addToDatabase("ZAR","aus","0.5",getApplicationContext());
-
-            myCurrency.addToDatabase("EUR","aus","0.5",getApplicationContext());
-            ArrayList<String> test = (ArrayList<String>) temp.retrieveAll(getApplicationContext());
-            for (int i = 0; i < temparr.size(); i += 3) {
-//            System.out.println("DATA "+temparr.get(i + 2));
-                String a = forma.format(parseDouble(temparr.get(i + 2)));
-
-                Currency c = new Currency(temparr.get(i), temparr.get(i + 1), a);
-                tempALl.add(c);
-
-            }
-        }
-
 
 
         System.out.println("NO IN ARR");
@@ -320,40 +277,48 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myCurrency = Currency.getInstance();
-//        if(tempALl.isEmpty()){
-//            myCurrency.addToDatabase("AUD","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("BGN","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("BRL","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("CAD","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("CHF","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("CNY","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("CZK","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("DKK","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("GBP","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("HKD","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("HRK","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("HUF","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("IDR","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("ILS","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("INR","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("JPY","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("KRW","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("MXN","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("MYR","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("NOK","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("NZD","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("PHP","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("PLN","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("RON","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("RUB","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("SEK","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("THB","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("TRY","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("USD","aus","0.5",getApplicationContext());
-//            myCurrency.addToDatabase("ZAR","aus","0.5",getApplicationContext());
-//
-//            myCurrency.addToDatabase("EUR","aus","0.5",getApplicationContext());
-//        }
+
+        ArrayList<String>yu= (ArrayList<String>) myCurrency.retrieveAll(getApplicationContext());
+
+        if(yu.isEmpty()){
+            System.out.println("rune");
+            myCurrency.deleteAll(getApplicationContext());
+            myCurrency.addToDatabase("AUD","AUD","0.5",getApplicationContext());
+            myCurrency.addToDatabase("BGN","BGN","0.5",getApplicationContext());
+            myCurrency.addToDatabase("BRL","BRL","0.5",getApplicationContext());
+            myCurrency.addToDatabase("CAD","CAD","0.5",getApplicationContext());
+            myCurrency.addToDatabase("CHF","CHF","0.5",getApplicationContext());
+            myCurrency.addToDatabase("CNY","CNY","0.5",getApplicationContext());
+            myCurrency.addToDatabase("CZK","CZK","0.5",getApplicationContext());
+            myCurrency.addToDatabase("DKK","DKK","0.5",getApplicationContext());
+            myCurrency.addToDatabase("GBP","GBP","0.5",getApplicationContext());
+            myCurrency.addToDatabase("HKD","HKD","0.5",getApplicationContext());
+            myCurrency.addToDatabase("HRK","HRK","0.5",getApplicationContext());
+            myCurrency.addToDatabase("HUF","HUF","0.5",getApplicationContext());
+            myCurrency.addToDatabase("IDR","IDR","0.5",getApplicationContext());
+            myCurrency.addToDatabase("ILS","ILS","0.5",getApplicationContext());
+            myCurrency.addToDatabase("INR","INR","0.5",getApplicationContext());
+            myCurrency.addToDatabase("JPY","JPY","0.5",getApplicationContext());
+            myCurrency.addToDatabase("KRW","KRW","0.5",getApplicationContext());
+            myCurrency.addToDatabase("MXN","MXN","0.5",getApplicationContext());
+            myCurrency.addToDatabase("MYR","MYR","0.5",getApplicationContext());
+            myCurrency.addToDatabase("NOK","NOK","0.5",getApplicationContext());
+            myCurrency.addToDatabase("NZD","NZD","0.5",getApplicationContext());
+            myCurrency.addToDatabase("PHP","PHP","0.5",getApplicationContext());
+            myCurrency.addToDatabase("PLN","PLN","0.5",getApplicationContext());
+            myCurrency.addToDatabase("RON","RON","0.5",getApplicationContext());
+            myCurrency.addToDatabase("RUB","RUB","0.5",getApplicationContext());
+            myCurrency.addToDatabase("SEK","SEK","0.5",getApplicationContext());
+            myCurrency.addToDatabase("THB","THB","0.5",getApplicationContext());
+            myCurrency.addToDatabase("TRY","TRY","0.5",getApplicationContext());
+            myCurrency.addToDatabase("USD","USD","0.5",getApplicationContext());
+            myCurrency.addToDatabase("ZAR","ZAR","0.5",getApplicationContext());
+
+            myCurrency.addToDatabase("EUR","EUR","0.5",getApplicationContext());
+        }
+
+
+
 
 
         allCurr.add("AUD");
@@ -587,29 +552,6 @@ public class MainActivity extends AppCompatActivity {
 
         getFromAPI(a);
 
-        System.out.println("arraytest");
-        refreshAllArray();
-
-
-        myCurrency.deleteAll(getApplicationContext());
-        for (int i = 0; i < listcountrycode.size(); i++) {
-
-
-            myCurrency.addToDatabase(listcountry.get(i), listcountrycode.get(i), listrate.get(i), getApplicationContext());
-
-        }
-        ArrayList<String> temp = (ArrayList<String>) myCurrency.retrieveAll(getApplicationContext());
-
-        System.out.println("CHECKING DB for load: " + temp.size());
-//            System.out.println("test array");
-//            for(int i=0;i<listcountrycode.size();i++){
-//                System.out.println(listcountry.get(i));
-//                System.out.println(listcountrycode.get(i));
-//                System.out.println(listrate.get(i));
-//            }
-
-        getAllFromDb();
-
 //        refreshAllArray();
 
 //        getAllFromDb();
@@ -634,7 +576,6 @@ public class MainActivity extends AppCompatActivity {
 //
 //        getAllFromDb();
 //        return true;
-
 //    }
 
     public void onResume() {
